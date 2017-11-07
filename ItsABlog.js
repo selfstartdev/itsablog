@@ -13,7 +13,8 @@ export default class ItsABlog {
             metaTagEnd: '</meta>',
             dir: 'blog',
             encoding: 'utf-8',
-            pretty: true
+            pretty: true,
+            output: 'blog.json'
         };
 
         let compiledOptions = {};
@@ -26,18 +27,36 @@ export default class ItsABlog {
         this.options = compiledOptions;
     }
 
+    /**
+     * Runner Methods
+     */
     getPosts() {
-        this.getNamesOfFilesFromDir();
-        this.initiateFileManifest();
-        this.initializeMetaData();
-        this.compileContent();
-        this.options.pretty && this.prettifyFileManifest();
+        this.configureFileManifest();
         return this.fileManifest;
     }
 
     /**
-     * Privates
+     * Write fileManifest to given output file
      */
+    outputToFile() {
+        this.configureFileManifest();
+        this.writeToFile();
+    }
+
+    /**
+     * Sets up the file manifest, if it hasn't been done already
+     */
+    configureFileManifest() {
+        if(typeof this.fileManifest === 'undefined') {
+            this.getNamesOfFilesFromDir();
+            this.initiateFileManifest();
+            this.initializeMetaData();
+            this.configureCustomMetaData();
+            this.compileContent();
+            this.removeMetaDataString();
+            this.options.pretty && this.prettifyFileManifest();
+        }
+    }
 
     /**
      * Sets the fileNames member equal to all file names in the given dir
@@ -82,6 +101,47 @@ export default class ItsABlog {
     }
 
     /**
+     * Adds meta data set within the blog post to the meta data for the fileManifest
+     */
+    configureCustomMetaData() {
+        Object.keys(this.fileManifest).forEach((key) => {
+            let containsCustomMetaData = this.fileManifest[key].content.indexOf(this.options.metaTagStart) > -1,
+                customMetaDataString,
+                customMetaData;
+
+            if(containsCustomMetaData) {
+                customMetaDataString = this.fileManifest[key].content.substring(this.fileManifest[key]
+                    .content.indexOf(this.options.metaTagStart) +
+                    this.options.metaTagStart.length, this.fileManifest[key]
+                    .content.indexOf(this.options.metaTagEnd));
+
+                customMetaData = JSON.parse(customMetaDataString);
+
+                Object.assign(this.fileManifest[key].meta, customMetaData);
+            }
+        });
+    }
+
+    /**
+     * Removes text that contains meta data from the outputted content of the item in the fileManifest
+     */
+    removeMetaDataString() {
+        Object.keys(this.fileManifest).forEach((key) => {
+            let customMetaDataString =  this.fileManifest[key].content.substring(this.fileManifest[key]
+                    .content.indexOf(this.options.metaTagStart) +
+                this.options.metaTagStart.length, this.fileManifest[key]
+                    .content.indexOf(this.options.metaTagEnd));
+
+            console.log(customMetaDataString);
+
+            this.fileManifest[key].content = this.fileManifest[key].content.substring(
+                this.fileManifest[key].content.indexOf(customMetaDataString) + customMetaDataString.length + 1,
+                this.fileManifest[key].content.length
+            );
+        });
+    }
+
+    /**
      * Changes content of each item in fileManifest to be html compatable, and
      * char changed to typeset
      */
@@ -102,5 +162,13 @@ export default class ItsABlog {
             this.fileManifest[prettyName] = this.fileManifest[key];
             delete this.fileManifest[key];
         });
+    }
+
+    /**
+     * Writes the fileManifest to the file set in the options
+     */
+    writeToFile() {
+        fs.writeFileSync(this.options.output, JSON.stringify(this.fileManifest, null, this.options.pretty ?
+            '\t' : null));
     }
 }
