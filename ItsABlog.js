@@ -52,8 +52,8 @@ export default class ItsABlog {
             this.initiateFileManifest();
             this.initializeMetaData();
             this.configureCustomMetaData();
-            this.compileContent();
             this.removeMetaDataString();
+            this.compileContent();
             this.options.pretty && this.prettifyFileManifest();
         }
     }
@@ -128,14 +128,11 @@ export default class ItsABlog {
     removeMetaDataString() {
         Object.keys(this.fileManifest).forEach((key) => {
             let customMetaDataString =  this.fileManifest[key].content.substring(this.fileManifest[key]
-                    .content.indexOf(this.options.metaTagStart) +
-                this.options.metaTagStart.length, this.fileManifest[key]
-                    .content.indexOf(this.options.metaTagEnd));
-
-            console.log(customMetaDataString);
+                    .content.indexOf(this.options.metaTagStart), this.fileManifest[key]
+                    .content.indexOf(this.options.metaTagEnd) + this.options.metaTagEnd.length);
 
             this.fileManifest[key].content = this.fileManifest[key].content.substring(
-                this.fileManifest[key].content.indexOf(customMetaDataString) + customMetaDataString.length + 1,
+                this.fileManifest[key].content.indexOf(customMetaDataString) + customMetaDataString.length,
                 this.fileManifest[key].content.length
             );
         });
