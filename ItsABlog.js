@@ -62,7 +62,7 @@ export default class ItsABlog {
      * Sets the fileNames member equal to all file names in the given dir
      */
     getNamesOfFilesFromDir() {
-        this.fileNames = fs.readdirSync(__dirname + '/' + this.options.dir);
+        this.fileNames = fs.readdirSync(this.options.dir);
     }
 
     /**
@@ -78,8 +78,7 @@ export default class ItsABlog {
 
         this.fileNames.forEach((fileName) => {
             this.fileManifest[fileName] = {
-                content: fs.readFileSync(__dirname + '/' +
-                    this.options.dir + '/' + fileName,  this.options.encoding)
+                content: fs.readFileSync(this.options.dir + '/' + fileName,  this.options.encoding)
                 };
         });
 
@@ -92,9 +91,9 @@ export default class ItsABlog {
     initializeMetaData() {
         Object.keys(this.fileManifest).forEach((key) => {
             this.fileManifest[key].meta = {
-                creationDate: fs.statSync(__dirname + '/' + this.options.dir + '/' + key)
+                creationDate: fs.statSync(this.options.dir + '/' + key)
                     .birthtime,
-                lastEdited: fs.statSync(__dirname + '/' + this.options.dir + '/' + key)
+                lastEdited: fs.statSync(this.options.dir + '/' + key)
                     .mtime
             };
         });

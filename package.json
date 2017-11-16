@@ -1,10 +1,11 @@
 {
   "name": "itsablog",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "description": "An easy way to add blogging to your FrontEnd App",
-  "main": "ItsABlog.js",
+  "main": "ItsABlog.min.js",
   "scripts": {
-    "start": "babel-node --presets es2015 index.js"
+    "start": "babel-node --presets es2015 index.js",
+    "build": "./node_modules/.bin/babel ItsABlog.js --out-file ItsABlog.min.js --presets es2015"
   },
   "repository": {
     "type": "git",
