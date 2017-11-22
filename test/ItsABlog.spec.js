@@ -336,6 +336,32 @@ describe('ItsABlog', () => {
             });
         });
 
+        describe('#removeMetaDataString', () => {
+            let fakeFileManifest;
+
+            beforeEach(() => {
+                fakeFileManifest = {
+                    test1: {
+                        content: '<meta>{"test": true}</meta> #test',
+                        meta: {}
+                    },
+                    test2: {
+                        content: '<meta>{"test": true}</meta> #test2',
+                        meta: {}
+                    }
+                };
+            });
+
+            it('should remove all meta data from each file content', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.removeMetaDataString();
+                Object.keys(itsABlog.fileManifest).forEach((key) => {
+                    expect(itsABlog.fileManifest[key].content
+                            .indexOf(defaultOptions.metaTagStart) === -1).to.equal(true);
+                });
+            });
+        });
+
         describe('#prettifyFileManifest', () => {
             let fakeFileManifest, prettyFakeNames;
 
