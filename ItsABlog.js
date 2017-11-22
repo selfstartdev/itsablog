@@ -44,6 +44,10 @@ export default class ItsABlog {
     }
 
     /**
+     * Builder Methods
+     */
+
+    /**
      * Sets up the file manifest, if it hasn't been done already
      */
     configureFileManifest() {
