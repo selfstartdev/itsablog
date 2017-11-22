@@ -119,3 +119,25 @@ const defaultOptions = {
             output: 'blog.json'
         };
 ```
+
+## Developoment
+
+If you would like to contribute to this project, please clone the project to your local environment, and install dependencies for development
+
+```
+npm install
+```
+
+This project is written in ES6/ES2015, and built to ES5 for npm package publishing. To see the output of the test blog posts in the project, run the following
+
+```
+npm start
+```
+
+To have your ES6 build and written to the output file (which is the main file specified for npm), run the following
+
+```
+npm run build
+```
+
+Unit tests should be written for any and all changes made to this project. These should be written inside of respective files in the `/test` directory. This project's tests are written using [chai](https://chaijs.com), [chai-sinon](https://chaijs.com/plugins/sinon-chai/), and the [expect style](http://chaijs.com/api/bdd/)
