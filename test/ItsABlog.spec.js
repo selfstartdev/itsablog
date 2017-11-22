@@ -69,4 +69,40 @@ describe('ItsABlog', () => {
             });
         });
     });
+
+    describe('Builder Methods', () => {
+        describe('#configureFileManifest', () => {
+            let stubList = [],
+                methodNames = ['getNamesOfFilesFromDir', 'initiateFileManifest', 'initializeMetaData',
+                    'configureCustomMetaData', 'removeMetaDataString', 'compileContent',
+                    'prettifyFileManifest'];
+
+            beforeEach(() => {
+                methodNames.forEach((methodName) => {
+                    stubList.push(sinon.stub(itsABlog, methodName));
+                });
+            });
+
+            afterEach(() => {
+                methodNames.forEach((methodName) => {
+                    itsABlog[methodName].restore();
+                });
+            });
+
+            it('should not do anything if the fileManifest is defined', () => {
+                itsABlog.fileManifest = {};
+                itsABlog.configureFileManifest();
+                stubList.forEach((stub) => {
+                    expect(stub).to.have.not.been.calledWith();
+                });
+            });
+
+            it('should go through all the proper calls', () => {
+                itsABlog.configureFileManifest();
+                stubList.forEach((stub) => {
+                    expect(stub).to.have.been.called;
+                });
+            });
+        });
+    });
 });
