@@ -78,6 +78,31 @@ This will result in the following output when run with default settings
 	}
 }
 ```
+ItsABlog will simply look through your file's content looking for a `metaTagStart` and a `metaTagEnd`. You may end up having conflicts and issues if the content of your blog post includes the default options for these meta data boundaries. Because of this, there is the option to set custom meta tag boundary options when you instantiate ItsABlog. The following will behave with the exact same output as above, given the following runner script
+
+```javascript
+var ItsABlog = require('itsablog'),
+    itsablog = new ItsABlog({
+	metaTagStart: '<customMetaTag>',
+	metaTagEnd: '</customMetaTag>'
+    });
+
+itsablog.outputToFile();
+```
+and the following content in `/blog/test.md`
+
+```markdown
+<customMetaTag>
+    {
+        "title": "Test Blog Post",
+        "tags": ["test", "development"]
+    }
+</customMetaTag>
+
+## A Test Blog Post
+
+Lorem Ipsum Deolorum
+```
 
 
 ## Options
