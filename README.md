@@ -43,6 +43,15 @@ itsablog.outputToFile();
 ```
 A list of options can be found in the Options section below
 
+## Custom Meta Tags
+
+ItsABlog by default adds metaData for lastEdited, and creation date for each item oututted. However, custom metadata might be something you need. ItsABlog comes with the ability to add in custom meta data of your choosing, written as simple JSON within your file. At the top of each blog post file, you can add in tags to represent your custom metadata. An example with the default meta data tags is as follows
+
+```markdown
+<meta>
+</meta>
+```
+
 ## Options
 
 The following is the defaultOptions object. Every key can be overridden by passing in a matching key in the options object when instantiating ItsABlog
