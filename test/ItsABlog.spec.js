@@ -4,6 +4,8 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fs from 'fs';
+import marked from 'marked';
+import typeset from 'typeset';
 import ItsABlog from './../ItsABlog.js';
 
 let expect = chai.expect;
@@ -33,14 +35,14 @@ describe('ItsABlog', () => {
         });
 
         it('should be able to override any option given', () => {
-             customOptions = {
-                 metaTagStart: 'test',
-                 metaTagEnd: 'test',
-                 dir: 'test',
-                 encoding: 'test',
-                 pretty: false,
-                 output: 'test'
-             };
+            customOptions = {
+                metaTagStart: 'test',
+                metaTagEnd: 'test',
+                dir: 'test',
+                encoding: 'test',
+                pretty: false,
+                output: 'test'
+            };
 
             currentOptions = {};
 
@@ -191,10 +193,10 @@ describe('ItsABlog', () => {
                 expect(readdirSyncStub).to.have.been.calledWith(customDir);
             });
         });
-        
+
         describe('#initiateFileManifest', () => {
             let fakeFileNames, fakeFileContent, readFileSyncStub;
-            
+
             beforeEach(() => {
                 fakeFileNames = ['test1.md', 'test2.md'];
                 fakeFileContent = 'fakeFileContent';
@@ -204,7 +206,7 @@ describe('ItsABlog', () => {
             afterEach(() => {
                 fs.readFileSync.restore();
             });
-            
+
             it('should throw an error if no files have been found', () => {
                 itsABlog = new ItsABlog();
                 expect(itsABlog.initiateFileManifest).to.throw();
@@ -231,6 +233,195 @@ describe('ItsABlog', () => {
                 itsABlog.fileNames = fakeFileNames;
                 itsABlog.initiateFileManifest();
                 expect(typeof itsABlog.fileNames).to.equal('undefined');
+            });
+        });
+
+        describe('#initializdeMetaData', () => {
+            let fakeFileManifest, statSyncResponse, statSyncStub;
+
+            beforeEach(() => {
+                fakeFileManifest = {
+                    test1: {
+
+                    },
+                    test2: {
+
+                    }
+                };
+
+                statSyncResponse = {
+                    birthtime: 'birthtime',
+                    mtime: 'mtime'
+                };
+
+                statSyncStub = sinon.stub(fs, 'statSync').returns(statSyncResponse);
+            });
+
+            afterEach(() => {
+                fs.statSync.restore();
+            });
+
+            it('should set the timeMetaData for each file in the fileManifest', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.initializeMetaData();
+                Object.keys(itsABlog.fileManifest).forEach((key) => {
+                    expect(itsABlog.fileManifest[key].meta.creationDate).to.eql(statSyncResponse.birthtime);
+                    expect(itsABlog.fileManifest[key].meta.lastEdited).to.eql(statSyncResponse.mtime);
+                });
+                expect(statSyncStub).to.have.been.called;
+            });
+        });
+
+        describe('#configureCustomMetaData', () => {
+            let fakeFileManifest, customOptions;
+
+            beforeEach(() => {
+                fakeFileManifest = {
+                    test1: {
+                        content: '<meta>{"test": true}</meta> #test',
+                        meta: {}
+                    },
+                    test2: {
+                        content: '<meta>{"test": true}</meta> #test2',
+                        meta: {}
+                    }
+                };
+            });
+
+            it('should assign the custom meta to the file manifest', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.configureCustomMetaData();
+                Object.keys(itsABlog.fileManifest).forEach((key) => {
+                    expect(itsABlog.fileManifest[key].meta.test).to.equal(true);
+                });
+            });
+
+            it('should not assign anything if meta tags are not correct', () => {
+                fakeFileManifest = {
+                    test1: {
+                        content: '<met>{"test": true}</meta> #test',
+                        meta: {}
+                    },
+                    test2: {
+                        content: '<met>{"test": true}</meta> #test2',
+                        meta: {}
+                    }
+                };
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.configureCustomMetaData();
+                Object.keys(itsABlog.fileManifest).forEach((key) => {
+                    expect(typeof itsABlog.fileManifest[key].meta.test).to.equal('undefined');
+                });
+            });
+
+            it('should allow for custom meta tags', () => {
+                customOptions = {
+                    metaTagStart: '<customMeta>',
+                    metaTagEnd: '</customMeta>'
+                };
+                fakeFileManifest = {
+                    test1: {
+                        content: '<customMeta>{"test": true}</customMeta> #test',
+                        meta: {}
+                    },
+                    test2: {
+                        content: '<customMeta>{"test": true}</customMeta> #test2',
+                        meta: {}
+                    }
+                };
+                itsABlog = new ItsABlog(customOptions);
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.configureCustomMetaData();
+                Object.keys(itsABlog.fileManifest).forEach((key) => {
+                    expect(itsABlog.fileManifest[key].meta.test).to.equal(true);
+                });
+            });
+        });
+
+        describe('#compileContent', () => {
+            let fakeFileManifest, markedSpy, typesetSpy;
+
+            beforeEach(() => {
+                fakeFileManifest = {
+                    'test1.md': {
+                        content: '',
+                        meta: {}
+                    },
+                    'test2.md': {
+                        content: '',
+                        meta: {}
+                    }
+                };
+
+                markedSpy = sinon.spy(marked);
+                typesetSpy = sinon.spy(typeset);
+            });
+
+            it('should call marked for each of the pieces of content', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.compileContent();
+                expect(markedSpy).to.have.been.calledTwice;
+            });
+
+            it('should call typeset for each of the pieces of content', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.compileContent();
+                expect(typesetSpy).to.have.been.calledTwice;
+            });
+        });
+
+        describe('#prettifyFileManifest', () => {
+            let fakeFileManifest, prettyFakeNames;
+
+            beforeEach(() => {
+                fakeFileManifest = {
+                    'test1.md': {
+                        content: '',
+                        meta: {}
+                    },
+                    'test2.md': {
+                        content: '',
+                        meta: {}
+                    }
+                };
+
+                prettyFakeNames = ['test1', 'test2'];
+            });
+
+            it('should change the names of fileManifest keys to no longer be fileNames', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.prettifyFileManifest();
+                Object.keys(itsABlog.fileManifest).forEach((key) => {
+                    expect(prettyFakeNames.indexOf(key) >= 0).to.equal(true);
+                });
+            });
+        });
+
+        describe('#writeToFile', () => {
+            let fakeFileManifest, writeFileSyncStub;
+
+            beforeEach(() => {
+                fakeFileManifest = {
+                    test1: {
+                        content: '',
+                        meta: {}
+                    },
+                    test2: {
+                        content: '',
+                        meta: {}
+                    }
+                };
+                writeFileSyncStub = sinon.stub(fs, 'writeFileSync');
+            });
+
+            afterEach(() => {
+                fs.writeFileSync.restore();
+            });
+
+            it('should call the filesystem to write to file', () => {
+                itsABlog.fileManifest = fakeFileManifest;
+                itsABlog.writeToFile();
+                expect(writeFileSyncStub).to.have.been.called;
             });
         });
     });
