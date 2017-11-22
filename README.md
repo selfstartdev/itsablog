@@ -141,3 +141,5 @@ npm run build
 ```
 
 Unit tests should be written for any and all changes made to this project. These should be written inside of respective files in the `/test` directory. This project's tests are written using [chai](https://chaijs.com), [chai-sinon](https://chaijs.com/plugins/sinon-chai/), and the [expect style](http://chaijs.com/api/bdd/)
+
+All changes should be submitted as a pull request, for review
