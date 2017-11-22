@@ -4,8 +4,6 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fs from 'fs';
-import marked from 'marked';
-import typeset from 'typeset';
 import ItsABlog from './../ItsABlog.js';
 
 let expect = chai.expect;
@@ -335,38 +333,6 @@ describe('ItsABlog', () => {
                 Object.keys(itsABlog.fileManifest).forEach((key) => {
                     expect(itsABlog.fileManifest[key].meta.test).to.equal(true);
                 });
-            });
-        });
-
-        describe('#compileContent', () => {
-            let fakeFileManifest, markedSpy, typesetSpy;
-
-            beforeEach(() => {
-                fakeFileManifest = {
-                    'test1.md': {
-                        content: '',
-                        meta: {}
-                    },
-                    'test2.md': {
-                        content: '',
-                        meta: {}
-                    }
-                };
-
-                markedSpy = sinon.spy(marked);
-                typesetSpy = sinon.spy(typeset);
-            });
-
-            it('should call marked for each of the pieces of content', () => {
-                itsABlog.fileManifest = fakeFileManifest;
-                itsABlog.compileContent();
-                expect(markedSpy).to.have.been.calledTwice;
-            });
-
-            it('should call typeset for each of the pieces of content', () => {
-                itsABlog.fileManifest = fakeFileManifest;
-                itsABlog.compileContent();
-                expect(typesetSpy).to.have.been.calledTwice;
             });
         });
 
