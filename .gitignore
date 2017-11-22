@@ -49,3 +49,4 @@ Temporary Items
 .idea
 node_modules
 blog.json
+.nyc_output
