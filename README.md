@@ -1,5 +1,8 @@
-# ItsABlog
+# ItsABlog 
+![Build Status](https://travis-ci.org/brianbrennan/itsablog.svg?branch=master)
+
 An easy way to add blogging to your front end app
+
 
 ## What is it?
 
