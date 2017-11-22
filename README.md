@@ -49,8 +49,36 @@ ItsABlog by default adds metaData for lastEdited, and creation date for each ite
 
 ```markdown
 <meta>
+    {
+        "title": "Test Blog Post",
+        "tags": ["test", "development"]
+    }
 </meta>
+
+## A Test Blog Post
+
+Lorem Ipsum Deolorum
 ```
+
+This will result in the following output when run with default settings
+
+```JSON
+{
+	"test": {
+		"content": "<h2 id=\"a-test-blog-post\">A Test Blog Post</h2>\n<p>Lorem Ipsum Deolorum</p>\n",
+		"meta": {
+			"creationDate": "2017-11-07T20:12:39.404Z",
+			"lastEdited": "2017-11-22T18:18:11.331Z",
+			"title": "Test Blog Post",
+			"tags": [
+				"test",
+				"development"
+			]
+		}
+	}
+}
+```
+
 
 ## Options
 
