@@ -29,3 +29,16 @@ var ItsABlog = require('itsablog'),
 itsABlog.outputToFile();
 
 ```
+
+This will invoke the default settings, and will try to look for markdown files within `/blog` directory. It will take the data from there and output it to `blog.json`. These default settings can be overridden when you create a new instance of ItsABlog, simply by passing in an `options` object. For example, if you want to have it look for blog posts within `/app/blog/blog-posts`, and output the data to `blog_posts.json`, that can be done with the following
+
+```javascript
+var ItsABlog = require('itsablog'),
+    itsablog = new ItsABlog({
+        dir: './app/blog/blog-posts',
+        output: './blog_posts.json'
+    });
+
+itsablog.outputToFile();
+```
+A list of options can be found in the Options section below
