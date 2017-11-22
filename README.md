@@ -75,6 +75,7 @@ the output JSON will look like this
 	}
 }
 ```
+ItsABlog compiles your markdown to html, and includes that as the content in your outputted JSON. It does this using the package [marked](https://github.com/chjj/marked), and uses default settings based on that package. In addition, ItsABlog also runs the given content through a character parser called [typeset](https://blot.im/typeset/). Visit their site to get a comprehensive list of character transformations.
 
 ## Custom Meta Data
 
