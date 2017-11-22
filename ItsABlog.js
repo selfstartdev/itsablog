@@ -74,7 +74,7 @@ export default class ItsABlog {
      * and their content
      */
     initiateFileManifest() {
-        if(!this.fileNames.length) {
+        if(!objectPath.get(this, 'fileNames.length')) {
             throw 'no files found in given dir';
         }
 
