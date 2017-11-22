@@ -18,10 +18,14 @@ npm install itsablog --save-dev
 
 ## How it works
 
-ItsABlog is build to compile your blog files into data before you run your front end release / build. By setting up a script to integrate with ItsABlog, you can customize how you want your markdown files to be compiled and set up as JSON.
+ItsABlog is built to compile your blog files into data before you run your front end release / build. By setting up a script to integrate with ItsABlog, you can customize how you want your markdown files to be compiled and set up as JSON.
 
 In order to use ItsABlog, you'll want to set up a runner script that initializes the package. Below is a simple example of a runner script.
 
 ```javascript
+var ItsABlog = require('itsablog'),
+    itsABlog = new ItsABlog();
+    
+itsABlog.outputToFile();
 
 ```
