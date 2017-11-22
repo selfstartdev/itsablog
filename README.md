@@ -174,6 +174,12 @@ To have your ES6 build and written to the output file (which is the main file sp
 npm run build
 ```
 
-Unit tests should be written for any and all changes made to this project. These should be written inside of respective files in the `/test` directory. This project's tests are written using [chai](https://chaijs.com), [chai-sinon](https://chaijs.com/plugins/sinon-chai/), and the [expect style](http://chaijs.com/api/bdd/)
+Unit tests should be written for any and all changes made to this project. These should be written inside of respective files in the `/test` directory. This project's tests are written using [chai](https://chaijs.com), [chai-sinon](https://chaijs.com/plugins/sinon-chai/), and the [expect style](http://chaijs.com/api/bdd/).
+
+Before submitting any changes, run the project's testing suite with the following
+
+```
+npm test
+```
 
 All changes should be submitted as a pull request, for review
