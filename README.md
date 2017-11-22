@@ -42,3 +42,18 @@ var ItsABlog = require('itsablog'),
 itsablog.outputToFile();
 ```
 A list of options can be found in the Options section below
+
+## Options
+
+The following is the defaultOptions object. Every key can be overridden by passing in a matching key in the options object when instantiating ItsABlog
+
+```javascript
+const defaultOptions = {
+            metaTagStart: '<meta>',
+            metaTagEnd: '</meta>',
+            dir: 'blog',
+            encoding: 'utf-8',
+            pretty: true,
+            output: 'blog.json'
+        };
+```
