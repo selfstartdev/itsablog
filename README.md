@@ -43,7 +43,40 @@ itsablog.outputToFile();
 ```
 A list of options can be found in the Options section below
 
-## Custom Meta Tags
+## Output Style
+
+The output JSON for ItsABlog is set to contain each blog posts content, meta data about the file's creation date and it's last edited date, and is laid out in an object, whose key's are each of the file's names (without the `.md` file extension). So given the following folder structure...
+
+```
+blog
+    |
+    |->test.md
+    |
+    |->test2.md
+```
+
+the output JSON will look like this
+
+```JSON
+{
+	"test": {
+		"content": "Blog Post Content",
+		"meta": {
+			"creationDate": "2017-11-07T20:12:39.404Z",
+			"lastEditedDate": "2017-11-07T20:12:39.404Z"
+		}
+	},
+	"test2": {
+		"content": "Other Blog Post Content",
+		"meta": {
+			"creationDate": "2017-11-08T20:12:39.404Z",
+			"lastEditedDate": "2017-11-08T20:12:39.404Z"
+		}
+	}
+}
+```
+
+## Custom Meta Data
 
 ItsABlog by default adds metaData for lastEdited, and creation date for each item oututted. However, custom metadata might be something you need. ItsABlog comes with the ability to add in custom meta data of your choosing, written as simple JSON within your file. At the top of each blog post file, you can add in tags to represent your custom metadata. An example with the default meta data tags, in a file `test.md` is as follows
 
