@@ -10,4 +10,12 @@ ItsABlog is a package that is used to turn your collection of markdown files int
 
 ## How it works
 
-ItsABlog runs as a CLI before you run your front end release / build. By setting up a script to integrate with ItsABlog, you can customize how you want your markdown files to be compiled and set up as JSON.
+ItsABlog is build to compile your bog files into data before you run your front end release / build. By setting up a script to integrate with ItsABlog, you can customize how you want your markdown files to be compiled and set up as JSON.
+
+## How to install
+
+ItsABlog is integrated into npm as a public package. To install, enter the following into your command prompt, while in your project directory
+
+```
+  npm install itsablog --save-dev
+```
