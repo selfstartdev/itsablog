@@ -41,6 +41,7 @@ export default class ItsABlog {
     outputToFile() {
         this.configureFileManifest();
         this.writeToFile();
+        console.log('Output to file: "' + this.options.output + '"');
     }
 
     /**
