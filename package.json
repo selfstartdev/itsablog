@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/brianbrennan/itsablog#readme",
   "dependencies": {
-    "marked": "0.3.6",
+    "marked": "0.3.7",
     "object-path": "0.11.4",
     "typeset": "0.2.2"
   },
