@@ -183,3 +183,10 @@ npm test
 ```
 
 All changes should be submitted as a pull request, for review
+
+## Features on Roadmap
+
+* Allowing for nested blog folder structure
+* Ability to read blog data structure from memory, rather than from output file
+* Improve output script to display what actions have occurred
+* Implement cli functionality so as to not require a runner script
