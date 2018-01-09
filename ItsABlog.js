@@ -172,7 +172,9 @@ export default class ItsABlog {
     compileContent() {
         Object.keys(this.fileManifest).forEach((key) => {
             this.fileManifest[key].content =
-                typeset(marked(this.fileManifest[key].content));
+                typeset(marked(this.fileManifest[key].content), {
+                    disable: ['hyphenate']
+                });
         });
     }
 
