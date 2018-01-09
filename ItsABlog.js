@@ -2,6 +2,7 @@ import fs from 'fs';
 import objectPath from 'object-path';
 import marked from 'marked';
 import typeset from 'typeset';
+import recursiveReadDir from 'recursive-readdir-synchronous';
 
 /**
  * ItsABlog
@@ -30,6 +31,10 @@ export default class ItsABlog {
     /**
      * Runner Methods
      */
+
+    /**
+     * Returns fileManifest, without writing to a file
+     */
     getPosts() {
         this.configureFileManifest();
         return this.fileManifest;
@@ -53,7 +58,7 @@ export default class ItsABlog {
      */
     configureFileManifest() {
         if(typeof this.fileManifest === 'undefined') {
-            this.getNamesOfFilesFromDir();
+            this.getFileListFromDir();
             this.initiateFileManifest();
             this.initializeMetaData();
             this.configureCustomMetaData();
@@ -66,8 +71,23 @@ export default class ItsABlog {
     /**
      * Sets the fileNames member equal to all file names in the given dir
      */
-    getNamesOfFilesFromDir() {
-        this.fileNames = fs.readdirSync(this.options.dir);
+    getFileListFromDir() {
+        this.fileNames = recursiveReadDir(this.options.dir);
+        this.fileList = this.fileNames.map((fileName) => {
+            let ancestry = fileName.split('\\'),
+                trueFileName;
+
+            ancestry.shift();
+
+            trueFileName = ancestry.pop();
+
+            return {
+                 fileName: trueFileName,
+                 ancestry: ancestry
+            };
+        });
+
+        delete this.fileNames;
     }
 
     /**
@@ -75,19 +95,21 @@ export default class ItsABlog {
      * and their content
      */
     initiateFileManifest() {
-        if(!objectPath.get(this, 'fileNames.length')) {
+        if(!objectPath.get(this, 'fileList.length')) {
             throw 'no files found in given dir';
         }
 
         this.fileManifest = {};
 
-        this.fileNames.forEach((fileName) => {
-            this.fileManifest[fileName] = {
-                content: fs.readFileSync(this.options.dir + '/' + fileName,  this.options.encoding)
-                };
+        this.fileList.forEach((file) => {
+            this.fileManifest[file.fileName] = {
+                content: fs.readFileSync(this.options.dir + '/' + file.ancestry.join('/') + '/' +
+                    file.fileName, this.options.encoding),
+                ancestry: file.ancestry
+            };
         });
 
-        delete this.fileNames;
+        delete this.fileList;
     }
 
     /**
@@ -95,11 +117,12 @@ export default class ItsABlog {
      */
     initializeMetaData() {
         Object.keys(this.fileManifest).forEach((key) => {
-            this.fileManifest[key].meta = {
-                creationDate: fs.statSync(this.options.dir + '/' + key)
-                    .birthtime,
-                lastEdited: fs.statSync(this.options.dir + '/' + key)
-                    .mtime
+            let file = this.fileManifest[key];
+            file.meta = {
+                creationDate: fs.statSync(this.options.dir + '/' + file.ancestry.join('/') + '/' +
+                    key).birthtime,
+                lastEdited: fs.statSync(this.options.dir + '/' + file.ancestry.join('/') + '/' +
+                    key).mtime
             };
         });
     }
