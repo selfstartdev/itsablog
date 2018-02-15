@@ -4,6 +4,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fs from 'fs';
+import recursiveReadDir from 'recursive-readdir-synchronous';
 import ItsABlog from './../ItsABlog.js';
 
 let expect = chai.expect;
@@ -117,7 +118,7 @@ describe('ItsABlog', () => {
                 prettifyFileManifestStub;
 
             beforeEach(() => {
-                getNamesOfFilesFromDirStub = sinon.stub(itsABlog, 'getNamesOfFilesFromDir');
+                getNamesOfFilesFromDirStub = sinon.stub(itsABlog, 'getFileListFromDir');
                 initiateFileManifestStub = sinon.stub(itsABlog, 'initiateFileManifest');
                 initializeMetaDataStub = sinon.stub(itsABlog, 'initializeMetaData');
                 configureCustomMetaDataStub = sinon.stub(itsABlog, 'configureCustomMetaData');
@@ -127,7 +128,7 @@ describe('ItsABlog', () => {
             });
 
             afterEach(() => {
-                itsABlog.getNamesOfFilesFromDir.restore();
+                itsABlog.getFileListFromDir.restore();
                 itsABlog.initiateFileManifest.restore();
                 itsABlog.initializeMetaData.restore();
                 itsABlog.configureCustomMetaData.restore();
@@ -166,19 +167,19 @@ describe('ItsABlog', () => {
             });
         });
 
-        describe('#getNamesOfFilesFromDir', () => {
+        describe('#getFileListFromDir', () => {
             let readdirSyncStub, customDir;
 
             beforeEach(() => {
-                readdirSyncStub = sinon.stub(fs, 'readdirSync');
+                readdirSyncStub = sinon.stub(recursiveReadDir, 'default');
             });
 
             afterEach(() => {
-                fs.readdirSync.restore();
+                recursiveReadDir.default.restore();
             });
 
             it('should call to read the default directory', () => {
-                itsABlog.getNamesOfFilesFromDir();
+                itsABlog.getFileListFromDir();
                 expect(readdirSyncStub).to.have.been.calledWith(defaultOptions.dir);
             });
 
@@ -187,16 +188,19 @@ describe('ItsABlog', () => {
                 itsABlog = new ItsABlog({
                     dir: customDir
                 });
-                itsABlog.getNamesOfFilesFromDir();
+                itsABlog.getFileListFromDir();
                 expect(readdirSyncStub).to.have.been.calledWith(customDir);
             });
         });
 
         describe('#initiateFileManifest', () => {
-            let fakeFileNames, fakeFileContent, readFileSyncStub;
+            let fakeFileList, fakeFileContent, readFileSyncStub;
 
             beforeEach(() => {
-                fakeFileNames = ['test1.md', 'test2.md'];
+                fakeFileList = [
+                    {filename: 'test1.md', ancestry: []},
+                    {filename: 'test2.md', ancestry: []}
+                ];
                 fakeFileContent = 'fakeFileContent';
                 readFileSyncStub = sinon.stub(fs, 'readFileSync').returns(fakeFileContent);
             });
@@ -211,24 +215,25 @@ describe('ItsABlog', () => {
             });
 
             it('should set files from file system', () => {
-                itsABlog.fileNames = fakeFileNames;
+                itsABlog.fileList = fakeFileList;
                 itsABlog.initiateFileManifest();
                 expect(readFileSyncStub).to.have.been.calledTwice;
-                expect(itsABlog.fileManifest[fakeFileNames[0]].content).to.eql(fakeFileContent);
+                expect(itsABlog.fileManifest[fakeFileList[0].filename]
+                    .content).to.eql(fakeFileContent);
             });
 
             it('should allow for custom encoding', () => {
                 itsABlog = new ItsABlog({
                     encoding: 'test'
                 });
-                itsABlog.fileNames = fakeFileNames;
+                itsABlog.fileList = fakeFileList;
                 itsABlog.initiateFileManifest();
                 expect(readFileSyncStub).to.have.been.calledWith(
-                    defaultOptions.dir + '/' + fakeFileNames[0], 'test');
+                    defaultOptions.dir + '/' + fakeFileList[0].filename, 'test');
             });
 
             it('should delete fileNames after completing task', () => {
-                itsABlog.fileNames = fakeFileNames;
+                itsABlog.fileList = fakeFileList;
                 itsABlog.initiateFileManifest();
                 expect(typeof itsABlog.fileNames).to.equal('undefined');
             });
