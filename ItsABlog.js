@@ -140,7 +140,7 @@ export default class ItsABlog {
                 customMetaDataString = this.fileManifest[key].content.substring(this.fileManifest[key]
                     .content.indexOf(this.options.metaTagStart) +
                     this.options.metaTagStart.length, this.fileManifest[key]
-                    .content.indexOf(this.options.metaTagEnd));
+                        .content.indexOf(this.options.metaTagEnd));
 
                 customMetaData = JSON.parse(customMetaDataString);
 
