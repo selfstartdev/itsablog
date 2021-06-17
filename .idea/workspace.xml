@@ -37,18 +37,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="101bc3ed-c5ec-433f-8775-6e5b2887768d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/archive/.babelrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/archive/.eslintignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/archive/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/archive/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/archive/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/archive/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ItsABlog.js" beforeDir="false" afterPath="$PROJECT_DIR$/archive/ItsABlog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ItsABlog.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/archive/ItsABlog.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/archive/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/archive/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/archive/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ItsABlog.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/archive/test/ItsABlog.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +75,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\github-repos\itsablog" />
       <recent name="C:\github-repos\itsablog\archive" />
       <recent name="C:\github-repos\itsablog\src" />
     </key>
@@ -97,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623942475218</updated>
-      <workItem from="1623942476513" duration="1052000" />
+      <workItem from="1623942476513" duration="1538000" />
     </task>
     <servers />
   </component>
