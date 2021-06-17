@@ -46,7 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-.idea
+../.idea
 node_modules
 blog.json
 .nyc_output
