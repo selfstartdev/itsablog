@@ -23,6 +23,7 @@
     "typeset": "0.2.2"
   },
   "devDependencies": {
+    "@types/node": "15.12.2",
     "babel-cli": "6.26.0",
     "babel-eslint": "8.0.2",
     "babel-plugin-add-module-exports": "0.2.1",
