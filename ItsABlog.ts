@@ -1,5 +1,7 @@
+import { ItsABlogOptions } from './types/ItsABlog';
+
 export default class ItsABlog {
-    constructor() {
+    constructor(options: ItsABlogOptions) {
         console.log('test');
     }
 }
