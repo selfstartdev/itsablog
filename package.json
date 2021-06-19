@@ -7,7 +7,8 @@
     "start": "npx ts-node ./startup.ts",
     "build": "tsc --build",
     "pretest": "npx eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "nyc mocha ./test/*.spec.ts --require ts-node/register"
+    "test": "nyc mocha ./test/*.spec.ts --require ts-node/register",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/brianbrennan/itsablog#readme",
   "dependencies": {
+    "coveralls": "3.1.0",
     "marked": "0.3.9",
     "object-path": "0.11.4",
     "typeset": "0.2.2"
@@ -35,7 +37,6 @@
     "@typescript-eslint/eslint-plugin": "4.27.0",
     "@typescript-eslint/parser": "4.27.0",
     "chai": "4.1.2",
-    "coveralls": "3.0.0",
     "eslint": "7.29.0",
     "mocha": "4.0.1",
     "nyc": "15.0.0",
