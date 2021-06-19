@@ -37,11 +37,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="101bc3ed-c5ec-433f-8775-6e5b2887768d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/types/packages.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ItsABlog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ItsABlog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/types/ItsABlog.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/ItsABlog.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +94,8 @@
       <option name="presentableId" value="Default" />
       <updated>1623942475218</updated>
       <workItem from="1623942476513" duration="2132000" />
-      <workItem from="1623991264844" duration="668000" />
+      <workItem from="1623991264844" duration="754000" />
+      <workItem from="1624039244475" duration="1855000" />
     </task>
     <servers />
   </component>
@@ -119,10 +120,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2540" y="-16" width="1535" height="1093" maximized="true" key="dock-window-1" timestamp="1623991347393">
+    <state x="3028" y="-16" width="1535" height="1093" maximized="true" key="dock-window-1" timestamp="1624112055059">
       <screen x="2560" y="0" width="2048" height="1112" />
     </state>
-    <state x="2540" y="-16" width="1535" height="1093" maximized="true" key="dock-window-1/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1623991347393" />
+    <state x="3028" y="-16" width="1535" height="1093" maximized="true" key="dock-window-1/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624112055059" />
     <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1623944118901">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>

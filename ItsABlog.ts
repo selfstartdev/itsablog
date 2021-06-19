@@ -2,27 +2,33 @@ import * as fs from 'fs';
 import objectPath from 'object-path';
 import marked from 'marked';
 import typeset from 'typeset';
-import { ItsABlogOptions } from './types/ItsABlog';
+
+import { ItsABlogOptions, ItsABlogFileManifest } from './types/ItsABlog';
 
 /**
  * ItsABlog
  */
 export default class ItsABlog {
 
+    /**
+     * Private Members
+     */
     private options: ItsABlogOptions;
+    private fileNames: string[];
+    private fileManifest: ItsABlogFileManifest;
 
 
-    constructor(options) {
+    constructor(options?) {
         const defaultOptions: ItsABlogOptions = {
             metaTagStart: '<meta>',
             metaTagEnd: '</meta>',
             dir: 'blog',
-            encoding: 'utf-8',
+            encoding: 'utf8',
             pretty: true,
             output: 'blog.json'
         };
 
-        let compiledOptions = {};
+        let compiledOptions: ItsABlogOptions = {} as ItsABlogOptions;
 
         Object.keys(defaultOptions).forEach((key) => {
             compiledOptions[key] = objectPath.has(options, key) ? options[key] :
@@ -88,7 +94,9 @@ export default class ItsABlog {
 
         this.fileNames.forEach((fileName) => {
             this.fileManifest[fileName] = {
-                content: fs.readFileSync(this.options.dir + '/' + fileName,  this.options.encoding)
+                content: fs.readFileSync(this.options.dir + '/' + fileName, {
+                    encoding: this.options.encoding
+                })
             };
         });
 
