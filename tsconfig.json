@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "dist",
+    "typeRoots": ["types"],
+    "types": ["node", "mocha"],
+    "esModuleInterop": true
+  },
+  "include": [
+    "*.ts"
+  ]
+}
