@@ -2,10 +2,8 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fs from 'fs';
-import typeset from 'typeset';
 
 import ItsABlog from '../ItsABlog';
-import { rewiremock } from './rewiremock';
 
 const expect = chai.expect;
 chai.use(sinonChai);
@@ -362,32 +360,6 @@ describe('ItsABlog', () => {
                     expect(itsABlog.fileManifest[key].content
                         .indexOf(defaultOptions.metaTagStart) === -1).to.equal(true);
                 });
-            });
-        });
-
-        describe('#compileContent', () => {
-            let fakeFileManifest, typesetStub;
-
-            beforeEach(() => {
-                fakeFileManifest = {
-                    test1: {
-                        content: '<meta>{"test": true}</meta> #test',
-                        meta: {}
-                    },
-                    test2: {
-                        content: '<meta>{"test": true}</meta> #test2',
-                        meta: {}
-                    }
-                };
-
-                typesetStub = sinon.createStubInstance(typeset)
-            });
-
-            it('call typeset package for each files content', () => {
-                itsABlog.fileManifest = fakeFileManifest;
-                itsABlog.compileContent();
-
-                expect(typesetStub).to.have.been.called;
             });
         });
 
