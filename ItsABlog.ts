@@ -17,7 +17,7 @@ export default class ItsABlog {
     private fileNames: string[];
     private fileManifest: ItsABlogFileManifest;
 
-    constructor(options?) {
+    constructor(options?: Record<string, unknown>) {
         const defaultOptions: ItsABlogOptions = {
             metaTagStart: '<meta>',
             metaTagEnd: '</meta>',

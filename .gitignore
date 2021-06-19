@@ -46,8 +46,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-.idea
-.idea/workspace.xml
 dist
 node_modules
 blog.json
