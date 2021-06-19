@@ -50,4 +50,4 @@ dist
 node_modules
 blog.json
 .nyc_output
-.idea/workspace.xml
+.idea
