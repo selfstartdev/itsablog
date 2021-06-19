@@ -17,7 +17,6 @@ export default class ItsABlog {
     private fileNames: string[];
     private fileManifest: ItsABlogFileManifest;
 
-
     constructor(options?) {
         const defaultOptions: ItsABlogOptions = {
             metaTagStart: '<meta>',
@@ -28,7 +27,7 @@ export default class ItsABlog {
             output: 'blog.json'
         };
 
-        let compiledOptions: ItsABlogOptions = {} as ItsABlogOptions;
+        const compiledOptions: ItsABlogOptions = {} as ItsABlogOptions;
 
         Object.keys(defaultOptions).forEach((key) => {
             compiledOptions[key] = objectPath.has(options, key) ? options[key] :
@@ -122,9 +121,8 @@ export default class ItsABlog {
      */
     configureCustomMetaData() {
         Object.keys(this.fileManifest).forEach((key) => {
-            let containsCustomMetaData = this.fileManifest[key].content.indexOf(this.options.metaTagStart) > -1,
-                customMetaDataString,
-                customMetaData;
+            const containsCustomMetaData = this.fileManifest[key].content.indexOf(this.options.metaTagStart) > -1;
+            let customMetaDataString, customMetaData;
 
             if(containsCustomMetaData) {
                 customMetaDataString = this.fileManifest[key].content.substring(this.fileManifest[key]
@@ -144,7 +142,7 @@ export default class ItsABlog {
      */
     removeMetaDataString() {
         Object.keys(this.fileManifest).forEach((key) => {
-            let customMetaDataString =  this.fileManifest[key].content.substring(this.fileManifest[key]
+            const customMetaDataString =  this.fileManifest[key].content.substring(this.fileManifest[key]
                 .content.indexOf(this.options.metaTagStart), this.fileManifest[key]
                 .content.indexOf(this.options.metaTagEnd) + this.options.metaTagEnd.length);
 
@@ -172,7 +170,7 @@ export default class ItsABlog {
      */
     prettifyFileManifest() {
         Object.keys(this.fileManifest).forEach((key) => {
-            let prettyName = key.substr(0, key.indexOf('.'));
+            const prettyName = key.substr(0, key.indexOf('.'));
             this.fileManifest[prettyName] = this.fileManifest[key];
             delete this.fileManifest[key];
         });

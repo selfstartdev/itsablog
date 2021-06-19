@@ -8,5 +8,10 @@ export type ItsABlogOptions = {
 };
 
 export type ItsABlogFileManifest = {
-
+    [key: string]: {
+        content: string,
+        meta?: {
+            [key: string]: any
+        }
+    }
 };

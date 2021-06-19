@@ -1,12 +1,10 @@
-/* global describe it beforeEach afterEach*/
-
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fs from 'fs';
-import ItsABlog from '../ItsABlog.js';
+import ItsABlog from '../ItsABlog';
 
-let expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 describe('ItsABlog', () => {
@@ -18,7 +16,7 @@ describe('ItsABlog', () => {
             metaTagStart: '<meta>',
             metaTagEnd: '</meta>',
             dir: 'blog',
-            encoding: 'utf-8',
+            encoding: 'utf8',
             pretty: true,
             output: 'blog.json'
         };
@@ -174,7 +172,7 @@ describe('ItsABlog', () => {
             });
 
             afterEach(() => {
-                fs.readdirSync.restore();
+                readdirSyncStub.restore();
             });
 
             it('should call to read the default directory', () => {
@@ -202,7 +200,7 @@ describe('ItsABlog', () => {
             });
 
             afterEach(() => {
-                fs.readFileSync.restore();
+                readFileSyncStub.restore();
             });
 
             it('should throw an error if no files have been found', () => {
@@ -217,14 +215,16 @@ describe('ItsABlog', () => {
                 expect(itsABlog.fileManifest[fakeFileNames[0]].content).to.eql(fakeFileContent);
             });
 
-            it('should allow for custom encoding', () => {
+            it('should allow for custom encoding from allowed list', () => {
                 itsABlog = new ItsABlog({
-                    encoding: 'test'
+                    encoding: 'ascii'
                 });
+
                 itsABlog.fileNames = fakeFileNames;
                 itsABlog.initiateFileManifest();
+
                 expect(readFileSyncStub).to.have.been.calledWith(
-                    defaultOptions.dir + '/' + fakeFileNames[0], 'test');
+                    defaultOptions.dir + '/' + fakeFileNames[0], {encoding: 'ascii'});
             });
 
             it('should delete fileNames after completing task', () => {
@@ -256,7 +256,7 @@ describe('ItsABlog', () => {
             });
 
             afterEach(() => {
-                fs.statSync.restore();
+                statSyncStub.restore();
             });
 
             it('should set the timeMetaData for each file in the fileManifest', () => {
@@ -357,7 +357,7 @@ describe('ItsABlog', () => {
                 itsABlog.removeMetaDataString();
                 Object.keys(itsABlog.fileManifest).forEach((key) => {
                     expect(itsABlog.fileManifest[key].content
-                            .indexOf(defaultOptions.metaTagStart) === -1).to.equal(true);
+                        .indexOf(defaultOptions.metaTagStart) === -1).to.equal(true);
                 });
             });
         });
@@ -407,7 +407,7 @@ describe('ItsABlog', () => {
             });
 
             afterEach(() => {
-                fs.writeFileSync.restore();
+                writeFileSyncStub.restore();
             });
 
             it('should call the filesystem to write to file', () => {

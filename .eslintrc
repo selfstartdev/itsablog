@@ -1,11 +1,18 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "rules": {
     "max-len": [1, 120, 2, {"ignoreComments": true}], //120 character max line length
     "no-console": 0
   },
-  "extends": ["eslint:recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": { //allows for browser globals, like document, to be used and have it be ok
-    "node": true
+    "node": true,
+    "mocha": true
   }
 }
