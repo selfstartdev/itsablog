@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import fs from 'fs';
+
 import ItsABlog from '../ItsABlog';
 
 const expect = chai.expect;

@@ -1,5 +1,5 @@
 import ItsABlog from './ItsABlog';
 
-let itsABlog = new ItsABlog();
+const itsABlog = new ItsABlog();
 
 itsABlog.outputToFile();

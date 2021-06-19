@@ -40,7 +40,7 @@ export default class ItsABlog {
     /**
      * Runner Methods
      */
-    getPosts() {
+    getPosts(): ItsABlogFileManifest {
         this.configureFileManifest();
         return this.fileManifest;
     }
@@ -48,7 +48,7 @@ export default class ItsABlog {
     /**
      * Write fileManifest to given output file
      */
-    outputToFile() {
+    outputToFile(): void {
         this.configureFileManifest();
         this.writeToFile();
         console.log('Output to file: "' + this.options.output + '"');
@@ -61,7 +61,7 @@ export default class ItsABlog {
     /**
      * Sets up the file manifest, if it hasn't been done already
      */
-    configureFileManifest() {
+    configureFileManifest(): void {
         if(typeof this.fileManifest === 'undefined') {
             this.getNamesOfFilesFromDir();
             this.initiateFileManifest();
@@ -76,7 +76,7 @@ export default class ItsABlog {
     /**
      * Sets the fileNames member equal to all file names in the given dir
      */
-    getNamesOfFilesFromDir() {
+    getNamesOfFilesFromDir(): void {
         this.fileNames = fs.readdirSync(this.options.dir);
     }
 
@@ -84,7 +84,7 @@ export default class ItsABlog {
      * Sets the fileManifest to have keys based on the file names from the directory,
      * and their content
      */
-    initiateFileManifest() {
+    initiateFileManifest(): void {
         if(!objectPath.get(this, 'fileNames.length')) {
             throw 'no files found in given dir';
         }
@@ -105,7 +105,7 @@ export default class ItsABlog {
     /**
      * Sets up metaData for each item in fileManifest
      */
-    initializeMetaData() {
+    initializeMetaData(): void {
         Object.keys(this.fileManifest).forEach((key) => {
             this.fileManifest[key].meta = {
                 creationDate: fs.statSync(this.options.dir + '/' + key)
@@ -119,7 +119,7 @@ export default class ItsABlog {
     /**
      * Adds meta data set within the blog post to the meta data for the fileManifest
      */
-    configureCustomMetaData() {
+    configureCustomMetaData(): void {
         Object.keys(this.fileManifest).forEach((key) => {
             const containsCustomMetaData = this.fileManifest[key].content.indexOf(this.options.metaTagStart) > -1;
             let customMetaDataString, customMetaData;
@@ -140,7 +140,7 @@ export default class ItsABlog {
     /**
      * Removes text that contains meta data from the outputted content of the item in the fileManifest
      */
-    removeMetaDataString() {
+    removeMetaDataString(): void {
         Object.keys(this.fileManifest).forEach((key) => {
             const customMetaDataString =  this.fileManifest[key].content.substring(this.fileManifest[key]
                 .content.indexOf(this.options.metaTagStart), this.fileManifest[key]
@@ -157,7 +157,7 @@ export default class ItsABlog {
      * Changes content of each item in fileManifest to be html compatable, and
      * char changed to typeset
      */
-    compileContent() {
+    compileContent(): void {
         Object.keys(this.fileManifest).forEach((key) => {
             this.fileManifest[key].content =
                 typeset(marked(this.fileManifest[key].content));
@@ -168,7 +168,7 @@ export default class ItsABlog {
      * Changes fileManifest keys to be the file name without the extension, by making
      * them substrings up to the first '.'
      */
-    prettifyFileManifest() {
+    prettifyFileManifest(): void {
         Object.keys(this.fileManifest).forEach((key) => {
             const prettyName = key.substr(0, key.indexOf('.'));
             this.fileManifest[prettyName] = this.fileManifest[key];
@@ -179,7 +179,7 @@ export default class ItsABlog {
     /**
      * Writes the fileManifest to the file set in the options
      */
-    writeToFile() {
+    writeToFile(): void {
         fs.writeFileSync(this.options.output, JSON.stringify(this.fileManifest, null, this.options.pretty ?
             '\t' : null));
     }

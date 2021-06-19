@@ -37,18 +37,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="101bc3ed-c5ec-433f-8775-6e5b2887768d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/ItsABlog.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/test/test2.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ItsABlog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/ItsABlog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/.babelrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/.eslintignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/.eslintrc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/ItsABlog.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/ItsABlog.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/startup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ItsABlog.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/ItsABlog.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,14 +79,14 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\github-repos\itsablog" />
       <recent name="C:\github-repos\itsablog\test" />
       <recent name="C:\github-repos\itsablog\types" />
-      <recent name="C:\github-repos\itsablog" />
       <recent name="C:\github-repos\itsablog\archive" />
       <recent name="C:\github-repos\itsablog\src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="Mocha.ItsABlog">
     <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -109,7 +104,7 @@
       <working-directory>$PROJECT_DIR$</working-directory>
       <pass-parent-env>true</pass-parent-env>
       <ui>bdd</ui>
-      <extra-mocha-options>--require ts-node/register</extra-mocha-options>
+      <extra-mocha-options>--require ts-node/register --silent</extra-mocha-options>
       <test-kind>SUITE</test-kind>
       <test-file>$PROJECT_DIR$/test/ItsABlog.spec.ts</test-file>
       <test-names>
@@ -117,34 +112,14 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="ItsABlog.Builder Methods.#configureFileManifest.should go through all the proper calls" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/ItsABlog.spec.ts</test-file>
-      <test-names>
-        <name value="ItsABlog" />
-        <name value="Builder Methods" />
-        <name value="#configureFileManifest" />
-        <name value="should go through all the proper calls" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Mocha.ItsABlog" />
-      <item itemvalue="Mocha.ItsABlog.Builder Methods.#configureFileManifest.should go through all the proper calls" />
       <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.test" />
         <item itemvalue="Mocha.ItsABlog" />
-        <item itemvalue="Mocha.ItsABlog.Builder Methods.#configureFileManifest.should go through all the proper calls" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +135,7 @@
       <updated>1623942475218</updated>
       <workItem from="1623942476513" duration="2132000" />
       <workItem from="1623991264844" duration="754000" />
-      <workItem from="1624039244475" duration="4999000" />
+      <workItem from="1624039244475" duration="6177000" />
     </task>
     <servers />
   </component>
@@ -180,26 +155,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1624114687781">
+    <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1624116760934">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624114687781" />
-    <state width="2027" height="299" key="GridCell.Tab.0.bottom" timestamp="1624116175061">
+    <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624116760934" />
+    <state width="2027" height="299" key="GridCell.Tab.0.bottom" timestamp="1624117131146">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2027" height="299" key="GridCell.Tab.0.bottom/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624116175061" />
-    <state width="2027" height="299" key="GridCell.Tab.0.center" timestamp="1624116175061">
+    <state width="2027" height="299" key="GridCell.Tab.0.bottom/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624117131146" />
+    <state width="2027" height="299" key="GridCell.Tab.0.center" timestamp="1624117131146">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2027" height="299" key="GridCell.Tab.0.center/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624116175061" />
-    <state width="2027" height="299" key="GridCell.Tab.0.left" timestamp="1624116175061">
+    <state width="2027" height="299" key="GridCell.Tab.0.center/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624117131146" />
+    <state width="2027" height="299" key="GridCell.Tab.0.left" timestamp="1624117131146">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2027" height="299" key="GridCell.Tab.0.left/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624116175061" />
-    <state width="2027" height="299" key="GridCell.Tab.0.right" timestamp="1624116175061">
+    <state width="2027" height="299" key="GridCell.Tab.0.left/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624117131146" />
+    <state width="2027" height="299" key="GridCell.Tab.0.right" timestamp="1624117131146">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2027" height="299" key="GridCell.Tab.0.right/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624116175061" />
+    <state width="2027" height="299" key="GridCell.Tab.0.right/2560.0.2048.1112/0.0.2048.1112@0.0.2048.1112" timestamp="1624117131146" />
     <state width="2027" height="368" key="GridCell.Tab.1.bottom" timestamp="1624114372796">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
