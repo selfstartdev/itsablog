@@ -1,6 +1,6 @@
 {
   "name": "itsablog",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "An easy way to add blogging to your Front End App",
   "main": "dist/ItsABlog.js",
   "scripts": {
