@@ -23,7 +23,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm test
-      - name: Coverage
-        uses: coverallsapp/github-action@v1.1.2
+      - uses: codecov/codecov-action@v1
         with:
-          github-token: ${{ github.token }}
+           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+           files: ./coverage1.xml,./coverage2.xml # optional
+           flags: unittests # optional
+           name: codecov-umbrella # optional
+           fail_ci_if_error: true # optional (default = false)
+           verbose: true # optional (default = false)
