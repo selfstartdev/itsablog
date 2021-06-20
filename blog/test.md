@@ -1,9 +1,12 @@
-<meta>
-    {
-        "title": "Test Blog Post",
-        "tags": ["test", "test2"]
-    }
-</meta>
+[//]: # (
+    <meta>
+        {
+            "title": "Test Blog Post",
+            "tags": ["test", "test6"]
+        }
+    </meta>
+)
+
 # Test Blog Post
 
 ### An h3 header
