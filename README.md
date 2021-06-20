@@ -24,28 +24,29 @@ ItsABlog is built to compile your blog files into data before you run your front
 
 In order to use ItsABlog, you'll want to set up a runner script that initializes the package. Below is a simple example of a runner script.
 
-```javascript
-var ItsABlog = require('itsablog'),
-    itsABlog = new ItsABlog();
+```typescript
+import ItsABlog from 'ItsABlog';
+
+let itsABlog = new ItsABlog();
     
 itsABlog.outputToFile();
-
 ```
 
 This will invoke the default settings, and will try to look for markdown files within `/blog` directory. It will take the data from there and output it to `blog.json`. These default settings can be overridden when you create a new instance of ItsABlog, simply by passing in an `options` object. For example, if you want to have it look for blog posts within `/app/blog/blog-posts`, and output the data to `blog_posts.json`, that can be done with the following
 
-```javascript
-var ItsABlog = require('itsablog'),
-    itsablog = new ItsABlog({
-        dir: './app/blog/blog-posts',
-        output: './blog_posts.json'
-    });
+```typescript
+import ItsABlog from 'ItsABlog';
+
+let itsablog = new ItsABlog({
+    dir: './app/blog/blog-posts',
+    output: './blog_posts.json'
+});
 
 itsablog.outputToFile();
 ```
 A list of options can be found in the Options section below
 
-## Output Style
+## Output Format
 
 The output JSON for ItsABlog is set to contain each blog posts content, meta data about the file's creation date and it's last edited date, and is laid out in an object, whose key's are each of the file's names (without the `.md` file extension). So given the following folder structure...
 
@@ -81,15 +82,17 @@ ItsABlog compiles your markdown to html, and includes that as the content in you
 
 ## Custom Meta Data
 
-ItsABlog by default adds metaData for lastEdited, and creation date for each item oututted. However, custom metadata might be something you need. ItsABlog comes with the ability to add in custom meta data of your choosing, written as simple JSON within your file. At the top of each blog post file, you can add in tags to represent your custom metadata. An example with the default meta data tags, in a file `test.md` is as follows
+ItsABlog by default adds metaData for lastEdited, and creation date for each item oututted. However, custom metadata might be something you need. ItsABlog comes with the ability to add in custom meta data of your choosing, written as simple JSON within your file. At the top of each blog post file, you can add in tags to represent your custom metadata. While not necessary, a good trick is to wrap said metadata in a [markdown comment](https://stackoverflow.com/questions/4823468/comments-in-markdown). An example with the default meta data tags, in a file `test.md` is as follows
 
 ```markdown
+[//]: # (
 <meta>
     {
         "title": "Test Blog Post",
         "tags": ["test", "development"]
     }
 </meta>
+)
 
 ## A Test Blog Post
 
@@ -116,24 +119,27 @@ This will result in the following output when run with default settings
 ```
 ItsABlog will simply look through your file's content looking for a `metaTagStart` and a `metaTagEnd`. You may end up having conflicts and issues if the content of your blog post includes the default options for these meta data boundaries. Because of this, there is the option to set custom meta tag boundary options when you instantiate ItsABlog. The following will behave with the exact same output as above, given the following runner script
 
-```javascript
-var ItsABlog = require('itsablog'),
-    itsablog = new ItsABlog({
-	metaTagStart: '<customMetaTag>',
-	metaTagEnd: '</customMetaTag>'
-    });
+```typescript
+import ItsABlog from 'ItsABlog';
+
+let itsablog = new ItsABlog({
+    metaTagStart: '<customMetaTag>',
+    	metaTagEnd: '</customMetaTag>'
+});
 
 itsablog.outputToFile();
 ```
 and the following content in `/blog/test.md`
 
 ```markdown
+[//]: # (
 <customMetaTag>
     {
         "title": "Test Blog Post",
         "tags": ["test", "development"]
     }
 </customMetaTag>
+)
 
 ## A Test Blog Post
 
@@ -164,19 +170,19 @@ If you would like to contribute to this project, please clone the project to you
 npm install
 ```
 
-This project is written in ES6/ES2015, and built to ES5 for npm package publishing. To see the output of the test blog posts in the project, run the following
+This project is written in TypeScript, and built to ES5 for npm package publishing. To see the output of the test blog posts in the project, run the following
 
 ```
 npm start
 ```
 
-To have your ES6 build and written to the output file (which is the main file specified for npm), run the following
+To have your TypeScript build and written to the output file (which is the main file specified for npm), run the following
 
 ```
 npm run build
 ```
 
-Unit tests should be written for any and all changes made to this project. These should be written inside of respective files in the `/test` directory. This project's tests are written using [chai](https://chaijs.com), [chai-sinon](https://chaijs.com/plugins/sinon-chai/), and the [expect style](http://chaijs.com/api/bdd/).
+Unit tests should be written for any and all changes made to this project. These should be written inside of respective files in the `/test` directory. This project's tests are written using [mocha](https://mochajs.org/), [chai](https://chaijs.com), [chai-sinon](https://chaijs.com/plugins/sinon-chai/), and the [expect style](http://chaijs.com/api/bdd/).
 
 Before submitting any changes, run the project's testing suite with the following
 
