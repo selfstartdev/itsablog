@@ -18,6 +18,26 @@ ItsABlog is integrated into npm as a public package. To install, enter the follo
 npm install itsablog --save-dev
 ```
 
+##CLI Instructions
+
+ItsABlog comes with the option of running as a CLI. You can install locally as instructed above, or choose to install globally by adding `-g` at the end of the above command. To run via cli, use the command `itsablog` in whichever context you've installed the package, globally or locally. If installed globally, you don't need to add the `npx` prefix to your command.
+
+```
+npx itsablog
+```
+
+When running as a CLI, you can choose to add any of the below options, which have the same defaults as the `options` object below.
+
+```
+Options:
+  -d, --dir <dir>                     Directory containing markdown files to be converted
+  -o, --output <output>               Output Directory for JSON
+  -p, --pretty                        Prettifies the output
+  -ms, --metaTagStart <metaTagStart>  Define a custom opening meta tag
+  -me, --metaTagEnd <metaTagEnd>      Define a custom closing meta tag
+  -h, --help                          display help for command
+```
+
 ## How it works
 
 ItsABlog is built to compile your blog files into data before you run your front end release / build. By setting up a script to integrate with ItsABlog, you can customize how you want your markdown files to be compiled and set up as JSON.
@@ -162,7 +182,7 @@ const defaultOptions = {
         };
 ```
 
-## Developoment
+## Development
 
 If you would like to contribute to this project, please clone the project to your local environment, and install dependencies for development
 
@@ -197,4 +217,4 @@ All changes should be submitted as a pull request, for review
 * Allowing for nested blog folder structure
 * Ability to read blog data structure from memory, rather than from output file
 * Improve output script to display what actions have occurred
-* Implement cli functionality so as to not require a runner script
+* ~~Implement cli functionality so as to not require a runner script~~
