@@ -1,12 +1,12 @@
 {
   "name": "itsablog",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "An easy way to add blogging to your Front End App",
-  "main": "dist/ItsABlog.min.js",
+  "main": "dist/ItsABlog.js",
   "scripts": {
     "start": "npx ts-node ./startup.ts",
     "build": "tsc --build",
-    "pretest": "npx eslint . --ext .js,.jsx,.ts,.tsx",
+    "pretest": "npx eslint . --ext .ts",
     "test": "nyc mocha ./test/*.spec.ts --require ts-node/register",
     "posttest": "npm run coverage",
     "coverage": "nyc report --reporter=json"
@@ -37,13 +37,13 @@
     "@typescript-eslint/eslint-plugin": "4.27.0",
     "@typescript-eslint/parser": "4.27.0",
     "chai": "4.1.2",
-    "codecov": "^3.8.2",
+    "codecov": "3.8.2",
     "eslint": "7.29.0",
     "mocha": "4.0.1",
     "nyc": "15.0.0",
     "sinon": "4.1.2",
     "sinon-chai": "2.14.0",
-    "ts-node": "^10.0.0",
+    "ts-node": "10.0.0",
     "typescript": "4.3.4"
   }
 }
