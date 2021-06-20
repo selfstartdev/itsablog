@@ -1,6 +1,7 @@
 # ItsABlog 
 ![GitHub Build](https://github.com/brianbrennan/itsablog/actions/workflows/main.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/brianbrennan/itsablog/badge.svg?branch=master)](https://coveralls.io/github/brianbrennan/itsablog?branch=master) [![npm](https://img.shields.io/npm/v/itsablog.svg)](https://www.npmjs.com/package/itsablog) [![npm](https://img.shields.io/npm/dm/itsablog.svg)](https://www.npmjs.com/package/itsablog)
+[![codecov](https://codecov.io/gh/brianbrennan/itsablog/branch/master/graph/badge.svg?token=RJA2HOQPL9)](https://codecov.io/gh/brianbrennan/itsablog)
+ [![npm](https://img.shields.io/npm/v/itsablog.svg)](https://www.npmjs.com/package/itsablog) [![npm](https://img.shields.io/npm/dm/itsablog.svg)](https://www.npmjs.com/package/itsablog)
 
 An easy way to add blogging to your front end app
 
