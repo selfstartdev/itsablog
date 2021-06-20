@@ -1,10 +1,10 @@
-name: Node.js CI
+name: CI Build
 
 on:
   push:
-    branches: [ origin/2.0 ]
+    branches: [ master ]
   pull_request:
-    branches: [ origin/2.0 ]
+    branches: [ master ]
 
 jobs:
   build:
