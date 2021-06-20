@@ -2,7 +2,7 @@ name: CI Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, origin/2.0 ]
   pull_request:
     branches: [ master ]
 
@@ -23,3 +23,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm test
+      - name: Coverage
+        uses: coverallsapp/github-action@v1.1.2
