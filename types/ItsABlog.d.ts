@@ -15,3 +15,5 @@ export type ItsABlogFileManifest = {
         }
     }
 };
+
+export type CLIOptions = ItsABlogOptions;

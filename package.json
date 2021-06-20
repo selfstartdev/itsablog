@@ -1,10 +1,10 @@
 {
   "name": "itsablog",
-  "version": "2.0.2",
+  "version": "2.1.2",
   "description": "An easy way to add blogging to your Front End App",
   "main": "dist/ItsABlog.js",
   "scripts": {
-    "start": "npx ts-node ./startup.ts",
+    "start": "npx ts-node cli-runner.ts",
     "build": "tsc --build",
     "pretest": "npx eslint . --ext .ts",
     "test": "nyc mocha ./test/*.spec.ts --require ts-node/register",
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/brianbrennan/itsablog.git"
   },
+  "bin": "./dist/cli-runner.js",
   "author": "Brian Brennan",
   "license": "ISC",
   "bugs": {
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/brianbrennan/itsablog#readme",
   "dependencies": {
+    "commander": "7.2.0",
     "marked": "0.3.9",
     "object-path": "0.11.4",
     "typeset": "0.2.2"
