@@ -51,3 +51,4 @@ node_modules
 blog.json
 .nyc_output
 .idea
+coverage
