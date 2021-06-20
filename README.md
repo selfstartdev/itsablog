@@ -18,7 +18,7 @@ ItsABlog is integrated into npm as a public package. To install, enter the follo
 npm install itsablog --save-dev
 ```
 
-##CLI Instructions
+## CLI Instructions
 
 ItsABlog comes with the option of running as a CLI. You can install locally as instructed above, or choose to install globally by adding `-g` at the end of the above command. To run via cli, use the command `itsablog` in whichever context you've installed the package, globally or locally. If installed globally, you don't need to add the `npx` prefix to your command.
 
