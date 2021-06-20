@@ -8,7 +8,7 @@
     "build": "tsc --build",
     "pretest": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "nyc mocha ./test/*.spec.ts --require ts-node/register",
-    "posttest": "npm run coverage",,
+    "posttest": "npm run coverage",
     "coverage": "nyc report --reporter=json"
   },
   "repository": {
